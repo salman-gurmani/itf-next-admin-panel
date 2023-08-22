@@ -18,8 +18,11 @@ import {
 
 import { NoListRecords } from "./Common";
 import { startCase } from "lodash";
+import { v4 as uuidv4 } from "uuid";
 
-const Filters = [<TextInput label="Search" source="q" alwaysOn />];
+const Filters = [
+  <TextInput label="Search" source="q" alwaysOn key={uuidv4()} />,
+];
 export const IndividualMembershipsList = (props: any) => {
   return (
     <List {...props} filters={Filters}>

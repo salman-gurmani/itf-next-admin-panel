@@ -87,7 +87,7 @@ const DataProvider = {
       const result = JSON.parse(response.body);
 
       return {
-        data: { ...result.result },
+        ...result.result,
       };
     } catch (error: any) {
       throw new Error(

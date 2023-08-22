@@ -19,6 +19,7 @@ import firebaseConfig from "../../firebase.config";
 import { PersonList, PersonShow } from "./Views/Persons";
 import { GroupMembersList, GroupMembersShow } from "./Views/GroupMembers";
 import {
+  MembershipPricingEdit,
   MembershipPricingList,
   MembershipPricingShow,
 } from "./Views/MembershipPricing";
@@ -88,6 +89,7 @@ const AdminApp = () => (
       options={{ label: "Membership Pricing" }}
       list={MembershipPricingList}
       show={MembershipPricingShow}
+      edit={MembershipPricingEdit}
     />
   </Admin>
 );

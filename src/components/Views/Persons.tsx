@@ -12,8 +12,11 @@ import {
 
 import { Divider } from "@material-ui/core";
 import { NoListRecords } from "./Common";
+import { v4 as uuidv4 } from "uuid";
 
-const Filters = [<TextInput label="Search" source="q" alwaysOn />];
+const Filters = [
+  <TextInput label="Search" source="q" alwaysOn key={uuidv4()} />,
+];
 export const PersonList = (props: any) => {
   return (
     <List {...props} filters={Filters}>
