@@ -14,6 +14,7 @@ import {
   ImageField,
   UrlField,
 } from "react-admin";
+import { v4 as uuidv4 } from "uuid";
 
 const validateSingleMembershipEdit = (values: any) => {
   const errors: any = {};
@@ -33,7 +34,9 @@ const validateSingleMembershipCreate = (values: any) => {
 
   return errors;
 };
-const Filters = [<TextInput label="Search" source="q" alwaysOn />];
+const Filters = [
+  <TextInput label="Search" source="q" alwaysOn key={uuidv4()} />,
+];
 const SingleMembershipsList = (props: any) => {
   return (
     <List {...props} filters={Filters}>

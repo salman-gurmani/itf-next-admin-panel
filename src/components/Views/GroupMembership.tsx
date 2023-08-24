@@ -18,10 +18,14 @@ import {
 
 import { Divider } from "@material-ui/core";
 import { NoListRecords } from "./Common";
-
+import { v4 as uuidv4 } from "uuid";
 const Filters = [
-  <TextInput label="Search" source="q" alwaysOn />,
-  <BooleanInput label="Expired Memberships" source={"isExpired"} />,
+  <TextInput label="Search" source="q" alwaysOn key={uuidv4()} />,
+  <BooleanInput
+    label="Expired Memberships"
+    source={"isExpired"}
+    key={uuidv4()}
+  />,
 ];
 export const GroupMembershipsList = (props: any) => {
   return (

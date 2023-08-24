@@ -14,6 +14,151 @@ import { Divider } from "@material-ui/core";
 import { NoListRecords } from "./Common";
 import { v4 as uuidv4 } from "uuid";
 
+import * as React from "react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  Typography,
+} from "@mui/material";
+import { Link, useTranslate, useGetMany, useRecordContext } from "react-admin";
+
+import { styled } from "@mui/material/styles";
+import { get, map, startCase } from "lodash";
+import {
+  IndividualMembership,
+  LeaderOfGroup,
+  MemberOfGroups,
+} from "@/helpers/types";
+
+export const TableCellRight = styled(TableCell)({ textAlign: "right" });
+const IndividualMemberships = () => {
+  const record = useRecordContext();
+  const individualMemberships = get(
+    record,
+    "history.individualMemberships",
+    []
+  );
+  return (
+    <Table>
+      <TableHead>
+        <TableRow>
+          <TableCell>
+            <Typography variant="subtitle2">Membership Number</Typography>{" "}
+          </TableCell>
+          <TableCellRight>Type</TableCellRight>
+          <TableCellRight>Valid Until</TableCellRight>
+          <TableCellRight>Expired</TableCellRight>
+          <TableCellRight>Active</TableCellRight>
+          <TableCellRight>Deleted</TableCellRight>
+          <TableCellRight>Created At</TableCellRight>
+          <TableCellRight>Updated At</TableCellRight>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {map(individualMemberships, (membership: IndividualMembership) => (
+          <TableRow key={membership.id}>
+            <TableCell>
+              <Link to={`/membership/individual/${membership.id}/show`}>
+                {membership.membershipNumber}
+              </Link>
+            </TableCell>
+            <TableCellRight>{startCase(membership.type)}</TableCellRight>
+            <TableCellRight>
+              {new Date(membership.validUntil).toDateString()}
+            </TableCellRight>
+            <TableCellRight>
+              {membership.isExpired ? "Yes" : "No"}
+            </TableCellRight>
+            <TableCellRight>
+              {membership.isActive ? "Yes" : "No"}
+            </TableCellRight>
+            <TableCellRight>
+              {membership.isDeleted ? "Yes" : "No"}
+            </TableCellRight>
+            <TableCellRight>
+              {new Date(membership.createdAt).toDateString()}
+            </TableCellRight>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  );
+};
+const MemberOfGroupsView = () => {
+  const record = useRecordContext();
+  const memberOfGroups = get(record, "history.memberOfGroups", []);
+
+  return (
+    <Table>
+      <TableHead>
+        <TableRow>
+          <TableCell>
+            <Typography variant="subtitle2">Parent Membrship</Typography>{" "}
+          </TableCell>
+          <TableCell>Membership Number</TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {map(memberOfGroups, (member: MemberOfGroups) => (
+          <TableRow key={uuidv4()}>
+            <TableCell>
+              <Link to={`/membership/group/${member.parentMembership}/show`}>
+                {member.parentMembership}
+              </Link>
+            </TableCell>
+            <TableCell>{member.membershipNumber}</TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  );
+};
+const LeaderOfGroupsView = () => {
+  const record = useRecordContext();
+  const leaderOfGroups = get(record, "history.leaderOfGroups", []);
+
+  return (
+    <Table>
+      <TableHead>
+        <TableRow>
+          <TableCell>
+            <Typography variant="subtitle2">Group Name</Typography>{" "}
+          </TableCell>
+          <TableCell>Type</TableCell>
+          <TableCell>Membership Number</TableCell>
+          <TableCell>Valid Until</TableCell>
+          <TableCell>Expired</TableCell>
+          <TableCell>Active</TableCell>
+          <TableCell>Deleted</TableCell>
+          <TableCell>Created At</TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {map(leaderOfGroups, (member: LeaderOfGroup) => (
+          <TableRow key={uuidv4()}>
+            <TableCell>
+              <Link to={`/membership/group/${member.id}/show`}>
+                {member.groupName}
+              </Link>
+            </TableCell>
+            <TableCell>{member.type}</TableCell>
+            <TableCell>{member.membershipNumber}</TableCell>
+            <TableCell>{member.isExpired ? "Yes" : "No"}</TableCell>
+            <TableCell>{member.isActive ? "Yes" : "No"}</TableCell>
+            <TableCell>{member.isDeleted ? "Yes" : "No"}</TableCell>
+
+            <TableCell>{new Date(member.validUntil).toDateString()}</TableCell>
+            <TableCell>{new Date(member.createdAt).toDateString()}</TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  );
+};
+
 const Filters = [
   <TextInput label="Search" source="q" alwaysOn key={uuidv4()} />,
 ];
@@ -57,6 +202,12 @@ export const PersonShow = (props: any) => {
         <TextField source="remarks" label="Remarks" />
         <DateField source="createdAt" label="Created At" />
         <DateField source="updatedAt" label="Updated At" />
+        <Typography variant="h6">Individual Memberships</Typography>
+        <IndividualMemberships />
+        <Typography variant="h6">Member of Groups</Typography>
+        <MemberOfGroupsView />
+        <Typography variant="h6">Leader of Groups</Typography>
+        <LeaderOfGroupsView />
       </SimpleShowLayout>
     </Show>
   );

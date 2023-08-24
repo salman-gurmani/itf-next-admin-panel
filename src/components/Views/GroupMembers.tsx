@@ -18,10 +18,15 @@ import {
 import { Divider } from "@material-ui/core";
 import { NoListRecords } from "./Common";
 import { startCase } from "lodash";
+import { v4 as uuidv4 } from "uuid";
 
 const Filters = [
-  <TextInput label="Search" source="q" alwaysOn />,
-  <ReferenceInput source="parentMembership" reference="membership/group">
+  <TextInput label="Search" source="q" alwaysOn key={uuidv4()} />,
+  <ReferenceInput
+    source="parentMembership"
+    reference="membership/group"
+    key={uuidv4()}
+  >
     <SelectInput optionText="groupName" />
   </ReferenceInput>,
 ];
