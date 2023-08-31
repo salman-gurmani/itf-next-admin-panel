@@ -46,13 +46,13 @@ const DataProvider = {
 
   getMany: (resource: any, params: any) => {
     const query = {
-      id: JSON.stringify(params.ids),
+      ids: JSON.stringify({ id: params.ids }),
+      range: JSON.stringify([0, params.ids.length]),
     };
-
     const url = `${apiUrl}/${resource}?${stringify(query)}`;
 
     return httpClient(url).then(({ json }) => {
-      return { data: json.result.data, total: json.result.total };
+      return { data: json.result.data };
     });
   },
 

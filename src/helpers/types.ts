@@ -33,3 +33,31 @@ export type MemberOfGroups = {
   parentMembership: string;
   membershipNumber: string;
 };
+export type Person = {
+  id: string;
+  givenName: string;
+  familyName: string;
+  dob: Date;
+  nationality: string;
+  gender: string;
+  residence: string;
+  email: string | null;
+  itfBackground: string;
+  remarks: string | null;
+  files: string[];
+  createdAt: Date;
+  updatedAt: Date;
+};
+export type Item = {
+  id: string;
+  orderId: string;
+  item: string;
+  price: number;
+  quantity: number;
+  personId: string;
+  membershipId: string;
+  groupMemberId: string;
+  createdAt: Date;
+  updatedAt: Date;
+  Person: Person;
+};

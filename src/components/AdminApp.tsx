@@ -8,6 +8,7 @@ import {
   IndividualMembershipShow,
   IndividualMembershipsList,
   OrderEdit,
+  OrderShow,
   OrdersList,
 } from "./Views";
 
@@ -71,6 +72,7 @@ const AdminApp = () => (
       options={{ label: "Orders" }}
       list={OrdersList}
       edit={OrderEdit}
+      show={OrderShow}
     />
     <Resource
       name="persons"
