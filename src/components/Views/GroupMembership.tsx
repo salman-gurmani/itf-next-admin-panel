@@ -31,6 +31,7 @@ export const GroupMembershipsList = (props: any) => {
   return (
     <List {...props} filters={Filters}>
       <Datagrid rowClick="show" empty={<NoListRecords />}>
+        <TextField source="id" />
         <TextField source="membershipNumber" label="Membership Number" />
         <TextField source="groupName" label="Group Name" />
         <ChipField source="type" label="Membership Type" />

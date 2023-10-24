@@ -1,10 +1,14 @@
 import {
   Datagrid,
   DateField,
+  DateInput,
+  Edit,
   EditButton,
   List,
+  SelectInput,
   Show,
   ShowButton,
+  SimpleForm,
   SimpleShowLayout,
   TextField,
   TextInput,
@@ -32,6 +36,7 @@ import {
   LeaderOfGroup,
   MemberOfGroups,
 } from "@/helpers/types";
+import { CountriesSelect } from "@/helpers/helpers";
 
 export const TableCellRight = styled(TableCell)({ textAlign: "right" });
 const IndividualMemberships = () => {
@@ -210,5 +215,40 @@ export const PersonShow = (props: any) => {
         <LeaderOfGroupsView />
       </SimpleShowLayout>
     </Show>
+  );
+};
+
+const validateCardOrderEdit = (values: any) => {
+  const errors: any = {};
+
+  return errors;
+};
+
+export const PersonEdit = (props: any) => {
+  const record = useRecordContext();
+
+  return (
+    <Edit {...props} redirect="list">
+      <SimpleForm validate={validateCardOrderEdit}>
+        <TextInput source="givenName" label="Given Name" />
+        <TextInput source="familyName" label="Family Name" />
+        <DateInput source="dob" label="DOB" />
+
+        <CountriesSelect source="nationality" label="Nationality" />
+        <TextInput source="email" label="Email" />
+
+        <SelectInput
+          source="gender"
+          label="Gender"
+          choices={[
+            { id: "male", name: "Male" },
+            { id: "female", name: "Female" },
+          ]}
+        />
+        <CountriesSelect source="residence" label="Residence" />
+        <TextInput source="itfBackground" label="ITF Background" />
+        <TextInput source="remarks" label="Remarks" fullWidth />
+      </SimpleForm>
+    </Edit>
   );
 };

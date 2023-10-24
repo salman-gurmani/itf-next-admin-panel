@@ -17,7 +17,7 @@ import { LoginPage } from "./LoginPage";
 import { defaultTheme } from "react-admin";
 import firebase from "firebase/compat/app";
 import firebaseConfig from "../../firebase.config";
-import { PersonList, PersonShow } from "./Views/Persons";
+import { PersonEdit, PersonList, PersonShow } from "./Views/Persons";
 import { GroupMembersList, GroupMembersShow } from "./Views/GroupMembers";
 import {
   MembershipPricingEdit,
@@ -79,6 +79,7 @@ const AdminApp = () => (
       options={{ label: "Persons" }}
       list={PersonList}
       show={PersonShow}
+      edit={PersonEdit}
     />
     <Resource
       name="groupMembers"
