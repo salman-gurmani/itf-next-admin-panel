@@ -3,14 +3,18 @@ import {
   ChipField,
   Datagrid,
   DateField,
+  DateInput,
+  Edit,
   EditButton,
   EmailField,
   FunctionField,
   List,
   NumberField,
   SelectField,
+  SelectInput,
   Show,
   ShowButton,
+  SimpleForm,
   SimpleShowLayout,
   TextField,
   TextInput,
@@ -92,5 +96,43 @@ export const GroupMembershipShow = (props: any) => {
         {/* <TextField source="status" label="Status" /> */}
       </SimpleShowLayout>
     </Show>
+  );
+};
+export const GroupMembershipEdit = (props: any) => {
+  return (
+    <Edit {...props}>
+      <SimpleForm>
+        <TextInput source="membershipNumber" label="Membership Number" />
+        <TextInput source="groupName" label="Group Name" />
+
+        <SelectInput
+          source="isActive"
+          label="Is Active"
+          choices={[
+            { id: "true", name: "True" },
+            { id: "false", name: "False" },
+          ]}
+        />
+        <SelectInput
+          source="isExpired"
+          label="Is Expired"
+          choices={[
+            { id: "true", name: "True" },
+            { id: "false", name: "False" },
+          ]}
+        />
+        <SelectInput
+          source="type"
+          label="Membership Type"
+          choices={[
+            { id: "dojang", name: "Dojang" },
+            { id: "school", name: "School" },
+            { id: "association", name: "Association" },
+          ]}
+        />
+        <DateInput source="validUntil" label="Expiry Date" />
+        <TextInput source="martialArtsOrg" label="Martial Arts Organization" />
+      </SimpleForm>
+    </Edit>
   );
 };
