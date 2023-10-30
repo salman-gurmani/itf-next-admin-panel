@@ -1,5 +1,6 @@
 import { Divider } from "@material-ui/core";
 import {
+  BooleanField,
   ChipField,
   Datagrid,
   DateField,
@@ -51,6 +52,7 @@ export const IndividualMembershipsList = (props: any) => {
           label="Membership Type"
         />
         <DateField source="validUntil" label="Expiry Date" />
+        <BooleanField source="isActive" label="Active" />
 
         <ShowButton />
         <EditButton />
@@ -92,7 +94,11 @@ export const IndividualMembershipShow = (props: any) => {
         <TextField source="martialArtsOrg" label="Martial Arts Organization" />
         {/* <ImageField source="profilePicture" label="Profile Picture" /> */}
         {/* <UrlField source="profilePicture" label="Profile Picture" /> */}
+        <BooleanField source="isActive" label="Active" />
+        <DateField source="validUntil" label="Valid Until" />
         <TextField source="Person.itfBackground" label="ITF Background" />
+
+        <TextField source="Person.remarks" label="Remarks" />
         {/* <TextField source="documents" label="Documents" />
         <TextField source="address1" label="Address " />
         <TextField source="address2" label="Additional Address " />
@@ -106,7 +112,6 @@ export const IndividualMembershipShow = (props: any) => {
         <DateField source="updatedAt" label="Date Modified" showTime />
         {/* <TextField source="createdBy" label="Created By" />
         <TextField source="lastModifiedBy" label="Last Modified By" /> */}
-        {/* <TextField source="status" label="Status" /> */}
       </SimpleShowLayout>
     </Show>
   );

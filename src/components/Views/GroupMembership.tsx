@@ -1,4 +1,5 @@
 import {
+  BooleanField,
   BooleanInput,
   ChipField,
   Datagrid,
@@ -31,7 +32,6 @@ export const GroupMembershipsList = (props: any) => {
   return (
     <List {...props} filters={Filters}>
       <Datagrid rowClick="show" empty={<NoListRecords />}>
-        <TextField source="id" />
         <TextField source="membershipNumber" label="Membership Number" />
         <TextField source="groupName" label="Group Name" />
         <ChipField source="type" label="Membership Type" />
@@ -61,14 +61,11 @@ export const GroupMembershipShow = (props: any) => {
         <TextField source="groupName" label="Group Name" />
         <TextField source="Person.givenName" label="Name" />
         <TextField source="Person.familyName" label="Family Name" />
-        <SelectField
-          source="Person.gender"
-          label="Gender"
-          choices={[
-            { id: "male", name: "Male" },
-            { id: "female", name: "Female" },
-          ]}
-        />
+        <TextField source="Person.gender" label="Gender" />
+
+        <BooleanField source="isActive" label="Active" />
+        <BooleanField source="isExpired" label="Expired" />
+        <DateField source="validUntil" label="Valid Until" />
         <TextField source="Person.residence" label="Country" />
         <EmailField source="Person.email" label="Email" />
         <DateField source="Person.dob" label="Date of Birth" />
