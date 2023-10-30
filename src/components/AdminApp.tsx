@@ -18,6 +18,7 @@ import { defaultTheme } from "react-admin";
 import firebase from "firebase/compat/app";
 import firebaseConfig from "../../firebase.config";
 import { PersonEdit, PersonList, PersonShow } from "./Views/Persons";
+import { EventsList, EventDetailsShow } from "./Views/Events";
 import { GroupMembersList, GroupMembersShow } from "./Views/GroupMembers";
 import {
   MembershipPricingEdit,
@@ -93,6 +94,12 @@ const AdminApp = () => (
       list={MembershipPricingList}
       show={MembershipPricingShow}
       edit={MembershipPricingEdit}
+    />
+    <Resource
+      name="events"
+      options={{ label: "Events" }}
+      list={EventsList}
+      show={EventDetailsShow}
     />
   </Admin>
 );
