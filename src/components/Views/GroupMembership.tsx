@@ -109,16 +109,16 @@ export const GroupMembershipEdit = (props: any) => {
           source="isActive"
           label="Is Active"
           choices={[
-            { id: "true", name: "True" },
-            { id: "false", name: "False" },
+            { id: true, name: "True" },
+            { id: false, name: "False" },
           ]}
         />
         <SelectInput
           source="isExpired"
           label="Is Expired"
           choices={[
-            { id: "true", name: "True" },
-            { id: "false", name: "False" },
+            { id: true, name: "True" },
+            { id: false, name: "False" },
           ]}
         />
         <SelectInput
