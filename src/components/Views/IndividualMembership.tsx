@@ -4,14 +4,18 @@ import {
   ChipField,
   Datagrid,
   DateField,
+  DateInput,
+  Edit,
   EditButton,
   EmailField,
   FunctionField,
   List,
   ReferenceField,
   SelectField,
+  SelectInput,
   Show,
   ShowButton,
+  SimpleForm,
   SimpleShowLayout,
   TextField,
   TextInput,
@@ -126,6 +130,42 @@ export const IndividualMembershipShow = (props: any) => {
 //     </Edit>
 //   );
 // };
+export const IndividualMembershipEdit = (props: any) => {
+  console.log("test");
+  return (
+    <Edit {...props}>
+      <SimpleForm>
+        <TextInput source="membershipNumber" label="Membership Number" />
+        <SelectInput
+          source="isActive"
+          label="Is Active"
+          choices={[
+            { id: true, name: "True" },
+            { id: false, name: "False" },
+          ]}
+        />
+        <SelectInput
+          source="isExpired"
+          label="Is Expired"
+          choices={[
+            { id: true, name: "True" },
+            { id: false, name: "False" },
+          ]}
+        />
+        <SelectInput
+          source="type"
+          label="Membership Type"
+          choices={[
+            { id: "regular", name: "Regular" },
+            { id: "premium", name: "Premium" },
+          ]}
+        />
+        <DateInput source="validUntil" label="Expiry Date" />
+        <TextInput source="martialArtsOrg" label="Martial Arts Organization" />
+      </SimpleForm>
+    </Edit>
+  );
+};
 
 // const IndividualMembershipCreate = (props: any) => {
 //   return (
