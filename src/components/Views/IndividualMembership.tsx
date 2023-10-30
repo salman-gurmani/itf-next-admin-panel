@@ -3,18 +3,14 @@ import {
   ChipField,
   Datagrid,
   DateField,
-  DateInput,
-  Edit,
   EditButton,
   EmailField,
   FunctionField,
   List,
   ReferenceField,
   SelectField,
-  SelectInput,
   Show,
   ShowButton,
-  SimpleForm,
   SimpleShowLayout,
   TextField,
   TextInput,
@@ -116,39 +112,41 @@ export const IndividualMembershipShow = (props: any) => {
   );
 };
 
-export const IndividualMembershipEdit = (props: any) => {
-  console.log("test");
-  return (
-    <Edit {...props}>
-      <SimpleForm>
-        <TextInput source="membershipNumber" label="Membership Number" />
-        <SelectInput
-          source="isActive"
-          label="Is Active"
-          choices={[
-            { id: "true", name: "True" },
-            { id: "false", name: "False" },
-          ]}
-        />
-        <SelectInput
-          source="isExpired"
-          label="Is Expired"
-          choices={[
-            { id: "true", name: "True" },
-            { id: "false", name: "False" },
-          ]}
-        />
-        <SelectInput
-          source="type"
-          label="Membership Type"
-          choices={[
-            { id: "regular", name: "Regular" },
-            { id: "premium", name: "Premium" },
-          ]}
-        />
-        <DateInput source="validUntil" label="Expiry Date" />
-        <TextInput source="martialArtsOrg" label="Martial Arts Organization" />
-      </SimpleForm>
-    </Edit>
-  );
-};
+// const IndividualMembershipEdit = (props: any) => {
+//   return (
+//     <Edit {...props}>
+//       <SimpleForm validate={validateIndividualMembershipEdit}>
+//         <TextInput source="givenName" />
+//       </SimpleForm>
+//     </Edit>
+//   );
+// };
+
+// const IndividualMembershipCreate = (props: any) => {
+//   return (
+//     <Create {...props}>
+//       <SimpleForm validate={validateSingleMembershipCreate}>
+//         <TextInput source="givenName" />
+//       </SimpleForm>
+//     </Create>
+//   );
+// };
+
+// const validateIndividualMembershipEdit = (values: any) => {
+//   const errors: any = {};
+
+//   if (!values.givenName) {
+//     errors.givenName = { message: "Given Name is required" };
+//   }
+
+//   return errors;
+// };
+// const validateSingleMembershipCreate = (values: any) => {
+//   const errors: any = {};
+
+//   if (!values.givenName) {
+//     errors.givenName = { message: "Given Name is required" };
+//   }
+
+//   return errors;
+// };
