@@ -5,6 +5,7 @@ import { FirebaseAuthProvider, RAFirebaseOptions } from "react-admin-firebase";
 import {
   GroupMembershipShow,
   GroupMembershipsList,
+  GroupMembershipEdit,
   IndividualMembershipShow,
   IndividualMembershipsList,
   OrderEdit,
@@ -66,6 +67,7 @@ const AdminApp = () => (
       options={{ label: "Group Memberships" }}
       list={GroupMembershipsList}
       show={GroupMembershipShow}
+      edit={GroupMembershipEdit}
     />
 
     <Resource
