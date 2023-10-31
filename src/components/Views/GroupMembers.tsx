@@ -1,7 +1,9 @@
 import {
   BooleanField,
+  Create,
   Datagrid,
   DateField,
+  DateInput,
   EditButton,
   FunctionField,
   List,
@@ -10,6 +12,7 @@ import {
   SelectInput,
   Show,
   ShowButton,
+  SimpleForm,
   SimpleShowLayout,
   TextField,
   TextInput,
@@ -103,5 +106,40 @@ export const GroupMembersShow = (props: any) => {
         <DateField source="createdAt" label="Created At" />
       </SimpleShowLayout>
     </Show>
+  );
+};
+
+export const CreateGroupMember = (props: any) => {
+  return (
+    <Create {...props}>
+      <SimpleForm>
+        <ReferenceInput source="groupMembershipId" reference="membership/group">
+          <SelectInput optionText="groupName" optionValue="id" />
+
+          {/* <SelectInput optionText="id" /> */}
+        </ReferenceInput>
+        <TextInput
+          source="groupMembershipNumber"
+          label="Group Membership Number"
+        />
+        <TextInput source="givenName" label="First Name" />
+        <TextInput source="familyName" label="Last Name" />
+        <DateInput source="dob" label="Date of Birth" />
+        <TextInput source="nationality" label="Nationality" />
+        <SelectInput
+          source="gender"
+          label="Gender"
+          choices={[
+            { id: "male", name: "Male" },
+            { id: "female", name: "Female" },
+          ]}
+        />{" "}
+        <TextInput source="residence" label="Residence" />
+        <TextInput source="email" label="Email" />
+        <TextInput source="itfBackground" label="ITF Background" />
+        <TextInput source="currentRank" label="Current Rank" />
+        <TextInput source="martialArtsStyle" label="Martial Arts Style" />
+      </SimpleForm>
+    </Create>
   );
 };
