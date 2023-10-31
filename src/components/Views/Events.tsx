@@ -31,7 +31,10 @@ import { Person } from "@/helpers/types";
 import { get, map } from "lodash";
 import { json2csv } from "json-2-csv";
 
-const Filters = [<TextInput label="Search" source="q" alwaysOn />];
+import { v4 as uuidv4 } from "uuid";
+const Filters = [
+  <TextInput key={uuidv4()} label="Search" source="q" alwaysOn />,
+];
 
 export const EventsList = (props: any) => {
   return (
@@ -87,12 +90,9 @@ export const EventDetailsShow = (props: any) => {
 };
 export const TableCellLeft = styled(TableCell)({ textAlign: "left" });
 
-const EventMembers = async () => {
+const EventMembers = () => {
   const record = useRecordContext();
   const EventMembersList = get(record, "registrations", []);
-
-  console.log("record is", record);
-  console.log("event member", EventMembersList);
 
   return (
     <Table>
