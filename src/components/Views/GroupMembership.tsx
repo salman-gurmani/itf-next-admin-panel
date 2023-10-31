@@ -1,16 +1,21 @@
 import {
+  BooleanField,
   BooleanInput,
   ChipField,
   Datagrid,
   DateField,
+  DateInput,
+  Edit,
   EditButton,
   EmailField,
   FunctionField,
   List,
   NumberField,
   SelectField,
+  SelectInput,
   Show,
   ShowButton,
+  SimpleForm,
   SimpleShowLayout,
   TextField,
   TextInput,
@@ -31,7 +36,6 @@ export const GroupMembershipsList = (props: any) => {
   return (
     <List {...props} filters={Filters}>
       <Datagrid rowClick="show" empty={<NoListRecords />}>
-        <TextField source="id" />
         <TextField source="membershipNumber" label="Membership Number" />
         <TextField source="groupName" label="Group Name" />
         <ChipField source="type" label="Membership Type" />
@@ -61,14 +65,11 @@ export const GroupMembershipShow = (props: any) => {
         <TextField source="groupName" label="Group Name" />
         <TextField source="Person.givenName" label="Name" />
         <TextField source="Person.familyName" label="Family Name" />
-        <SelectField
-          source="Person.gender"
-          label="Gender"
-          choices={[
-            { id: "male", name: "Male" },
-            { id: "female", name: "Female" },
-          ]}
-        />
+        <TextField source="Person.gender" label="Gender" />
+
+        <BooleanField source="isActive" label="Active" />
+        <BooleanField source="isExpired" label="Expired" />
+        <DateField source="validUntil" label="Valid Until" />
         <TextField source="Person.residence" label="Country" />
         <EmailField source="Person.email" label="Email" />
         <DateField source="Person.dob" label="Date of Birth" />
@@ -92,5 +93,43 @@ export const GroupMembershipShow = (props: any) => {
         {/* <TextField source="status" label="Status" /> */}
       </SimpleShowLayout>
     </Show>
+  );
+};
+export const GroupMembershipEdit = (props: any) => {
+  return (
+    <Edit {...props}>
+      <SimpleForm>
+        <TextInput source="membershipNumber" label="Membership Number" />
+        <TextInput source="groupName" label="Group Name" />
+
+        <SelectInput
+          source="isActive"
+          label="Is Active"
+          choices={[
+            { id: true, name: "True" },
+            { id: false, name: "False" },
+          ]}
+        />
+        <SelectInput
+          source="isExpired"
+          label="Is Expired"
+          choices={[
+            { id: true, name: "True" },
+            { id: false, name: "False" },
+          ]}
+        />
+        <SelectInput
+          source="type"
+          label="Membership Type"
+          choices={[
+            { id: "dojang", name: "Dojang" },
+            { id: "school", name: "School" },
+            { id: "association", name: "Association" },
+          ]}
+        />
+        <DateInput source="validUntil" label="Expiry Date" />
+        <TextInput source="martialArtsOrg" label="Martial Arts Organization" />
+      </SimpleForm>
+    </Edit>
   );
 };

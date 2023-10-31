@@ -5,6 +5,7 @@ import { FirebaseAuthProvider, RAFirebaseOptions } from "react-admin-firebase";
 import {
   GroupMembershipShow,
   GroupMembershipsList,
+  GroupMembershipEdit,
   IndividualMembershipShow,
   IndividualMembershipsList,
   OrderEdit,
@@ -18,11 +19,10 @@ import { defaultTheme } from "react-admin";
 import firebase from "firebase/compat/app";
 import firebaseConfig from "../../firebase.config";
 import { PersonEdit, PersonList, PersonShow } from "./Views/Persons";
-import {
-  GroupMembersList,
-  GroupMembersShow,
-  CreateGroupMember,
-} from "./Views/GroupMembers";
+
+import { EventsList, EventDetailsShow } from "./Views/Events";
+import { GroupMembersList, GroupMembersShow,CreateGroupMember } from "./Views/GroupMembers";
+
 import {
   MembershipPricingEdit,
   MembershipPricingList,
@@ -69,6 +69,7 @@ const AdminApp = () => (
       options={{ label: "Group Memberships" }}
       list={GroupMembershipsList}
       show={GroupMembershipShow}
+      edit={GroupMembershipEdit}
     />
 
     <Resource
@@ -98,6 +99,12 @@ const AdminApp = () => (
       list={MembershipPricingList}
       show={MembershipPricingShow}
       edit={MembershipPricingEdit}
+    />
+    <Resource
+      name="events"
+      options={{ label: "Events" }}
+      list={EventsList}
+      show={EventDetailsShow}
     />
   </Admin>
 );
