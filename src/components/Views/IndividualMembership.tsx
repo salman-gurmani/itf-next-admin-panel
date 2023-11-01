@@ -1,7 +1,8 @@
-import { Divider } from "@material-ui/core";
+import { Divider, Typography } from "@material-ui/core";
 import {
   BooleanField,
   ChipField,
+  Create,
   Datagrid,
   DateField,
   DateInput,
@@ -20,11 +21,13 @@ import {
   TextField,
   TextInput,
   DeleteWithConfirmButton,
+  BooleanInput,
 } from "react-admin";
 
 import { NoListRecords } from "./Common";
 import { startCase } from "lodash";
 import { v4 as uuidv4 } from "uuid";
+import { CountriesSelect } from "@/helpers/helpers";
 
 const Filters = [
   <TextInput label="Search" source="q" alwaysOn key={uuidv4()} />,
@@ -136,7 +139,6 @@ export const IndividualMembershipShow = (props: any) => {
 //   );
 // };
 export const IndividualMembershipEdit = (props: any) => {
-  console.log("test");
   return (
     <Edit {...props}>
       <SimpleForm>
@@ -172,15 +174,102 @@ export const IndividualMembershipEdit = (props: any) => {
   );
 };
 
-// const IndividualMembershipCreate = (props: any) => {
-//   return (
-//     <Create {...props}>
-//       <SimpleForm validate={validateSingleMembershipCreate}>
-//         <TextInput source="givenName" />
-//       </SimpleForm>
-//     </Create>
-//   );
-// };
+export const IndividualMembershipCreate = (props: any) => {
+  return (
+    <Create {...props}>
+      <SimpleForm>
+        <Typography variant="h6">Personal Details</Typography>
+
+        <TextInput source="givenName" label="First Name" />
+        <TextInput source="familyName" label="Last Name" />
+        <DateInput source="dob" label="Date of Birth" />
+        <SelectInput
+          source="gender"
+          label="Gender"
+          choices={[
+            { id: "male", name: "Male" },
+            { id: "female", name: "Female" },
+            { id: "other", name: "Other" },
+          ]}
+        />
+        <TextInput source="email" label="Email" />
+        <CountriesSelect source="nationality" label="Nationality" />
+        <DateInput source="validUntil" label="Membership Valid Until" />
+        <TextInput source="membershipNumber" label="Membership Number" />
+        <CountriesSelect source="residence" label="Residence" />
+        <SelectInput
+          source="membershipType"
+          label="Membership Type"
+          choices={[
+            { id: "regular", name: "Regular" },
+            { id: "premium", name: "Premium" },
+          ]}
+        />
+        <TextInput source="itfBackground" label="ITF Background" />
+        <TextInput source="martialArtsOrg" label="Martial Arts Organization" />
+        <TextInput source="remarks" label="Remarks" />
+        <BooleanInput
+          source="isMembershipCardRequested"
+          label="Membership Card Requested"
+        />
+        <Typography variant="h6">Shipping Details</Typography>
+
+        <TextInput source="shippingDetails.phone" label="Phone" />
+        <TextInput
+          source="shippingDetails.address1"
+          label="Shipping Address 1"
+        />
+        <TextInput
+          source="shippingDetails.address2"
+          label="Shipping Address 2"
+        />
+        <TextInput source="shippingDetails.city" label="Shipping City" />
+        <TextInput source="shippingDetails.state" label="Shipping State" />
+        <TextInput
+          source="shippingDetails.postalCode"
+          label="Shipping Postal Code"
+        />
+        <CountriesSelect
+          source="shippingDetails.country"
+          label="Shipping Country"
+        />
+        <Typography variant="h6">Billing Details</Typography>
+
+        <TextInput source="billingAddress.address1" label="Billing Address 1" />
+        <TextInput source="billingAddress.address2" label="Billing Address 2" />
+        <TextInput source="billingAddress.city" label="Billing City" />
+        <TextInput source="billingAddress.state" label="Billing State" />
+        <TextInput
+          source="billingAddress.postalCode"
+          label="Billing Postal Code"
+        />
+        <CountriesSelect
+          source="billingAddress.country"
+          label="Billing Country"
+        />
+        <Typography variant="h6">Payment Details</Typography>
+
+        <TextInput source="payment.amount" label="Amount" />
+        <TextInput source="payment.transactionId" label="Transaction ID" />
+        <SelectInput
+          source="payment.paymentMethod"
+          label="Payment Method"
+          choices={[{ id: "paypal", name: "PayPal" }]}
+        />
+        <SelectInput
+          source="payment.status"
+          label="Payment Status"
+          choices={[
+            { id: "paid", name: "Paid" },
+            { id: "pending", name: "Pending" },
+            { id: "reversed", name: "Reversed" },
+          ]}
+        />
+        <DateInput source="payment.paymentDate" label="Payment Date" />
+      </SimpleForm>
+    </Create>
+  );
+};
 
 // const validateIndividualMembershipEdit = (values: any) => {
 //   const errors: any = {};
