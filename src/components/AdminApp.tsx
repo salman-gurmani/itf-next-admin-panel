@@ -1,11 +1,12 @@
 "use client"; // only needed if you choose App Router
-import { Admin, Resource, ListGuesser, EditGuesser } from "react-admin";
+import { Admin, Resource } from "react-admin";
 import jsonServerProvider from "ra-data-json-server";
 import { FirebaseAuthProvider, RAFirebaseOptions } from "react-admin-firebase";
 import {
   GroupMembershipShow,
   GroupMembershipsList,
   GroupMembershipEdit,
+  GroupMembershipCreate,
   IndividualMembershipShow,
   IndividualMembershipsList,
   OrderEdit,
@@ -21,7 +22,11 @@ import firebaseConfig from "../../firebase.config";
 import { PersonEdit, PersonList, PersonShow } from "./Views/Persons";
 
 import { EventsList, EventDetailsShow } from "./Views/Events";
-import { GroupMembersList, GroupMembersShow,CreateGroupMember } from "./Views/GroupMembers";
+import {
+  GroupMembersList,
+  GroupMembersShow,
+  CreateGroupMember,
+} from "./Views/GroupMembers";
 
 import {
   MembershipPricingEdit,
@@ -70,6 +75,7 @@ const AdminApp = () => (
       list={GroupMembershipsList}
       show={GroupMembershipShow}
       edit={GroupMembershipEdit}
+      create={GroupMembershipCreate}
     />
 
     <Resource
