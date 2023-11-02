@@ -129,15 +129,6 @@ export const IndividualMembershipShow = (props: any) => {
   );
 };
 
-// const IndividualMembershipEdit = (props: any) => {
-//   return (
-//     <Edit {...props}>
-//       <SimpleForm validate={validateIndividualMembershipEdit}>
-//         <TextInput source="givenName" />
-//       </SimpleForm>
-//     </Edit>
-//   );
-// };
 export const IndividualMembershipEdit = (props: any) => {
   return (
     <Edit {...props}>
@@ -270,22 +261,3 @@ export const IndividualMembershipCreate = (props: any) => {
     </Create>
   );
 };
-
-// const validateIndividualMembershipEdit = (values: any) => {
-//   const errors: any = {};
-
-//   if (!values.givenName) {
-//     errors.givenName = { message: "Given Name is required" };
-//   }
-
-//   return errors;
-// };
-// const validateSingleMembershipCreate = (values: any) => {
-//   const errors: any = {};
-
-//   if (!values.givenName) {
-//     errors.givenName = { message: "Given Name is required" };
-//   }
-
-//   return errors;
-// };
