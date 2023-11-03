@@ -19,6 +19,7 @@ import {
   SimpleShowLayout,
   TextField,
   TextInput,
+  DeleteWithConfirmButton,
 } from "react-admin";
 
 import { NoListRecords } from "./Common";
@@ -58,8 +59,12 @@ export const IndividualMembershipsList = (props: any) => {
         <DateField source="validUntil" label="Expiry Date" />
         <BooleanField source="isActive" label="Active" />
 
-        <ShowButton />
         <EditButton />
+        <DeleteWithConfirmButton
+          confirmContent="You will not be able to recover this record. Are you sure?"
+          translateOptions={{ name: props.id }}
+          confirmTitle="Delete this record"
+        />
       </Datagrid>
     </List>
   );
