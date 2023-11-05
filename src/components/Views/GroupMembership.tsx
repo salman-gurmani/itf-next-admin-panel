@@ -11,7 +11,6 @@ import {
   FunctionField,
   List,
   NumberField,
-  SelectField,
   SelectInput,
   Show,
   ShowButton,
@@ -19,6 +18,7 @@ import {
   SimpleShowLayout,
   TextField,
   TextInput,
+  DeleteWithConfirmButton,
 } from "react-admin";
 
 import { Divider } from "@material-ui/core";
@@ -50,8 +50,13 @@ export const GroupMembershipsList = (props: any) => {
         <EmailField source="Person.email" label="Email" />
         <DateField source="validUntil" label="Expiry Date" />
         <DateField source="updatedAt" label="Last Modified" showTime />
-        <ShowButton />
+        {/* <ShowButton /> */}
         <EditButton />
+        <DeleteWithConfirmButton
+          confirmContent="You will not be able to recover this record. Are you sure?"
+          translateOptions={{ name: props.id }}
+          confirmTitle="Delete this record"
+        />
       </Datagrid>
     </List>
   );
