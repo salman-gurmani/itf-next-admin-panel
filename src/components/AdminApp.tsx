@@ -9,6 +9,8 @@ import {
   GroupMembershipCreate,
   IndividualMembershipShow,
   IndividualMembershipsList,
+  IndividualMembershipCreate,
+  IndividualMembershipEdit,
   OrderEdit,
   OrderShow,
   OrdersList,
@@ -68,6 +70,8 @@ const AdminApp = () => (
       options={{ label: "Individual Memberships" }}
       list={IndividualMembershipsList}
       show={IndividualMembershipShow}
+      edit={IndividualMembershipEdit}
+      create={IndividualMembershipCreate}
     />
     <Resource
       name="membership/group"
