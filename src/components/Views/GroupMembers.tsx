@@ -16,6 +16,7 @@ import {
   SimpleShowLayout,
   TextField,
   TextInput,
+  DeleteWithConfirmButton,
 } from "react-admin";
 
 import { Divider } from "@material-ui/core";
@@ -66,14 +67,20 @@ export const GroupMembersList = (props: any) => {
           source="isMembershipCardRequested"
           label="Membership Card Requested"
         />
+        <BooleanField source="isDeleted" label="Delete" />
 
         <TextField source="currentRank" label="Current Rank" />
         <TextField source="martialArtsStyle" label="Martial Arts Style" />
 
         <DateField source="createdAt" label="Created At" />
 
-        <ShowButton />
+        {/* <ShowButton /> */}
         <EditButton />
+        <DeleteWithConfirmButton
+          confirmContent="You will not be able to recover this record. Are you sure?"
+          translateOptions={{ name: props.id }}
+          confirmTitle="Delete this record"
+        />
       </Datagrid>
     </List>
   );
