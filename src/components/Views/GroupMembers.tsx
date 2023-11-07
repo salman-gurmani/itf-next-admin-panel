@@ -67,7 +67,6 @@ export const GroupMembersList = (props: any) => {
           source="isMembershipCardRequested"
           label="Membership Card Requested"
         />
-        <BooleanField source="isDeleted" label="Delete" />
 
         <TextField source="currentRank" label="Current Rank" />
         <TextField source="martialArtsStyle" label="Martial Arts Style" />
