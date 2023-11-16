@@ -15,7 +15,7 @@ import {
   SelectField,
   SelectInput,
   Show,
-  ShowButton,
+  ReferenceInput,
   SimpleForm,
   SimpleShowLayout,
   TextField,
@@ -28,6 +28,8 @@ import { NoListRecords } from "./Common";
 import { startCase } from "lodash";
 import { v4 as uuidv4 } from "uuid";
 import { CountriesSelect } from "@/helpers/helpers";
+import { useState } from "react";
+import React from "react";
 
 const Filters = [
   <TextInput label="Search" source="q" alwaysOn key={uuidv4()} />,
@@ -166,28 +168,53 @@ export const IndividualMembershipEdit = (props: any) => {
 };
 
 export const IndividualMembershipCreate = (props: any) => {
+  const [isExistingPerson, setIsExistingPerson] = useState(true);
   return (
     <Create {...props}>
       <SimpleForm>
-        <Typography variant="h6">Personal Details</Typography>
-
-        <TextInput source="givenName" label="First Name" />
-        <TextInput source="familyName" label="Last Name" />
-        <DateInput source="dob" label="Date of Birth" />
+        <Typography variant="h6">Select Existing Person</Typography>
         <SelectInput
-          source="gender"
-          label="Gender"
+          source="isExistingPerson"
+          label="Select existing person?"
           choices={[
-            { id: "male", name: "Male" },
-            { id: "female", name: "Female" },
-            { id: "other", name: "Other" },
+            { id: false, name: "No" },
+            { id: true, name: "Yes" },
           ]}
+          onChange={(event) => {
+            setIsExistingPerson(event.target.value);
+          }}
+          defaultValue={isExistingPerson}
         />
-        <TextInput source="email" label="Email" />
-        <CountriesSelect source="nationality" label="Nationality" />
-        <DateInput source="validUntil" label="Membership Valid Until" />
-        <TextInput source="membershipNumber" label="Membership Number" />
-        <CountriesSelect source="residence" label="Residence" />
+        {isExistingPerson ? (
+          <ReferenceInput source="personId" reference="persons">
+            <SelectInput
+              optionText={(choice) =>
+                `${choice.givenName} ${choice.familyName}`
+              }
+            />
+          </ReferenceInput>
+        ) : (
+          <>
+            <Typography variant="h6">Personal Details</Typography>
+            <TextInput source="givenName" label="First Name" />
+            <TextInput source="familyName" label="Last Name" />
+            <DateInput source="dob" label="Date of Birth" />
+            <SelectInput
+              source="gender"
+              label="Gender"
+              choices={[
+                { id: "male", name: "Male" },
+                { id: "female", name: "Female" },
+                { id: "other", name: "Other" },
+              ]}
+            />
+            <TextInput source="email" label="Email" />
+            <CountriesSelect source="nationality" label="Nationality" />
+            <CountriesSelect source="residence" label="Residence" />
+            <TextInput source="itfBackground" label="ITF Background" />
+          </>
+        )}
+
         <SelectInput
           source="membershipType"
           label="Membership Type"
@@ -196,9 +223,9 @@ export const IndividualMembershipCreate = (props: any) => {
             { id: "premium", name: "Premium" },
           ]}
         />
-        <TextInput source="itfBackground" label="ITF Background" />
         <TextInput source="martialArtsOrg" label="Martial Arts Organization" />
-        <TextInput source="remarks" label="Remarks" />
+        <DateInput source="validUntil" label="Membership Valid Until" />
+
         <BooleanInput
           source="isMembershipCardRequested"
           label="Membership Card Requested"
