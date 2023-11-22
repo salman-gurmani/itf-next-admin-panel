@@ -16,6 +16,7 @@ import {
   SimpleShowLayout,
   TextField,
   TextInput,
+  DeleteWithConfirmButton,
 } from "react-admin";
 
 import { Divider } from "@material-ui/core";
@@ -72,8 +73,13 @@ export const GroupMembersList = (props: any) => {
 
         <DateField source="createdAt" label="Created At" />
 
-        <ShowButton />
+        {/* <ShowButton /> */}
         <EditButton />
+        <DeleteWithConfirmButton
+          confirmContent="You will not be able to recover this record. Are you sure?"
+          translateOptions={{ name: props.id }}
+          confirmTitle="Delete this record"
+        />
       </Datagrid>
     </List>
   );
