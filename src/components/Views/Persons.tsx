@@ -134,10 +134,10 @@ const LeaderOfGroupsView = () => {
           </TableCell>
           <TableCell>Type</TableCell>
           <TableCell>Membership Number</TableCell>
-          <TableCell>Valid Until</TableCell>
           <TableCell>Expired</TableCell>
           <TableCell>Active</TableCell>
           <TableCell>Deleted</TableCell>
+          <TableCell>Valid Until</TableCell>
           <TableCell>Created At</TableCell>
         </TableRow>
       </TableHead>
@@ -145,16 +145,19 @@ const LeaderOfGroupsView = () => {
         {map(leaderOfGroups, (member: LeaderOfGroup) => (
           <TableRow key={uuidv4()}>
             <TableCell>
-              <Link to={`/membership/group/${member.id}/show`}>
-                {member.groupName}
-              </Link>
+              {member.isDeleted ? (
+                <span>{member.groupName}</span>
+              ) : (
+                <Link to={`/membership/group/${member.id}/show`}>
+                  {member.groupName}
+                </Link>
+              )}
             </TableCell>
             <TableCell>{member.type}</TableCell>
             <TableCell>{member.membershipNumber}</TableCell>
             <TableCell>{member.isExpired ? "Yes" : "No"}</TableCell>
             <TableCell>{member.isActive ? "Yes" : "No"}</TableCell>
             <TableCell>{member.isDeleted ? "Yes" : "No"}</TableCell>
-
             <TableCell>{new Date(member.validUntil).toDateString()}</TableCell>
             <TableCell>{new Date(member.createdAt).toDateString()}</TableCell>
           </TableRow>

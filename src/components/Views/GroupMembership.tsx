@@ -28,6 +28,7 @@ import { NoListRecords } from "./Common";
 import { v4 as uuidv4 } from "uuid";
 import { Typography } from "@mui/material";
 import { CountriesSelect } from "@/helpers/helpers";
+import React, { useState } from "react";
 
 const Filters = [
   <TextInput label="Search" source="q" alwaysOn key={uuidv4()} />,
@@ -106,9 +107,56 @@ export const GroupMembershipShow = (props: any) => {
   );
 };
 export const GroupMembershipEdit = (props: any) => {
+  const [isExistingGroupLeader, setIsExistingGroupLeader] = useState(true);
   return (
     <Edit {...props}>
       <SimpleForm>
+        <Typography variant="h6">
+          Use Existing Person For Group Leader?
+        </Typography>
+        <SelectInput
+          source="isExistingGroupLeader"
+          label="Select Existing Group Leader"
+          choices={[
+            { id: false, name: "No" },
+            { id: true, name: "Yes" },
+          ]}
+          onChange={(event) => {
+            setIsExistingGroupLeader(event.target.value);
+          }}
+          defaultValue={isExistingGroupLeader}
+        />
+        {isExistingGroupLeader ? (
+          <ReferenceInput source="personId" reference="persons">
+            <SelectInput
+              //optionText="id"
+              optionText={(choice) =>
+                `${choice.givenName} ${choice.familyName}`
+              }
+            />
+          </ReferenceInput>
+        ) : (
+          <>
+            <Typography variant="h6">Personal Details</Typography>
+            <TextInput source="givenName" label="First Name" />
+            <TextInput source="familyName" label="Last Name" />
+            <DateInput source="dob" label="Date of Birth" />
+            <SelectInput
+              source="gender"
+              label="Gender"
+              choices={[
+                { id: "male", name: "Male" },
+                { id: "female", name: "Female" },
+                { id: "other", name: "Other" },
+              ]}
+            />
+            <TextInput source="email" label="Email" />
+            <CountriesSelect source="nationality" label="Nationality" />
+            <CountriesSelect source="residence" label="Residence" />
+            <TextInput source="itfBackground" label="ITF Background" />
+          </>
+        )}
+
         <TextInput source="membershipNumber" label="Membership Number" />
         <TextInput source="groupName" label="Group Name" />
 
