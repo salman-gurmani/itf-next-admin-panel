@@ -15,7 +15,6 @@ import {
   ReferenceInput,
   SelectInput,
   Show,
-  ShowButton,
   SimpleForm,
   SimpleShowLayout,
   TextField,
@@ -28,7 +27,9 @@ import { NoListRecords } from "./Common";
 import { v4 as uuidv4 } from "uuid";
 import { Typography } from "@mui/material";
 import { CountriesSelect } from "@/helpers/helpers";
-import React, { useState } from "react";
+
+import { useState } from "react";
+import React from "react";
 
 const Filters = [
   <TextInput label="Search" source="q" alwaysOn key={uuidv4()} />,
@@ -191,31 +192,58 @@ export const GroupMembershipEdit = (props: any) => {
     </Edit>
   );
 };
+
 export const GroupMembershipCreate = (props: any) => {
+  const [isExistingPerson, setIsExistingPerson] = useState(true);
+
   return (
     <Create {...props}>
       <SimpleForm>
-        <Typography variant="h6">Personal Details</Typography>
+        <Typography variant="h6">Select Existing Person</Typography>
 
-        <TextInput source="givenName" label="First Name" />
-        <TextInput source="familyName" label="Last Name" />
-        <DateInput source="dob" label="Date of Birth" />
         <SelectInput
-          source="gender"
-          label="Gender"
+          source="isExistingPerson"
+          label="Select existing person?"
           choices={[
-            { id: "male", name: "Male" },
-            { id: "female", name: "Female" },
-            { id: "other", name: "Other" },
+            { id: false, name: "No" },
+            { id: true, name: "Yes" },
           ]}
+          onChange={(event) => {
+            setIsExistingPerson(event.target.value);
+          }}
+          defaultValue={isExistingPerson}
         />
-        <TextInput source="email" label="Email" />
-        <CountriesSelect source="nationality" label="Nationality" />
-        <CountriesSelect source="residence" label="Residence" />
+
+        {isExistingPerson ? (
+          <ReferenceInput source="personId" reference="persons">
+            <SelectInput
+              optionText={(choice) =>
+                `${choice.givenName} ${choice.familyName}`
+              }
+            />
+          </ReferenceInput>
+        ) : (
+          <>
+            <Typography variant="h6">Personal Details</Typography>
+            <TextInput source="givenName" label="First Name" />
+            <TextInput source="familyName" label="Last Name" />
+            <DateInput source="dob" label="Date of Birth" />
+            <SelectInput
+              source="gender"
+              label="Gender"
+              choices={[
+                { id: "male", name: "Male" },
+                { id: "female", name: "Female" },
+                { id: "other", name: "Other" },
+              ]}
+            />
+            <TextInput source="email" label="Email" />
+            <CountriesSelect source="nationality" label="Nationality" />
+            <CountriesSelect source="residence" label="Residence" />
+            <TextInput source="itfBackground" label="ITF Background" />
+          </>
+        )}
         <TextInput source="groupName" label="Group Name" />
-        {/* <ReferenceInput source="groupName" reference="membership/group">
-          <SelectInput optionText="groupName" optionValue="groupName" />
-        </ReferenceInput> */}
         <SelectInput
           source="membershipType"
           label="Membership Type"
@@ -225,13 +253,11 @@ export const GroupMembershipCreate = (props: any) => {
             { id: "association", name: "Association" },
           ]}
         />
-        <TextInput source="itfBackground" label="ITF Background" />
-        <TextInput source="martialArtsOrg" label="Martial Arts Organization" />
-        <TextInput source="membershipNumber" label="Membership Number" />
         <BooleanInput
           source="isMembershipCardRequested"
           label="Membership Card Requested"
         />
+        <TextInput source="martialArtsOrg" label="Martial Arts Organization" />
         <DateInput source="validUntil" label="Membership Valid Until" />
         <DateInput source="createdAt" label="Membership Created At" />
       </SimpleForm>
