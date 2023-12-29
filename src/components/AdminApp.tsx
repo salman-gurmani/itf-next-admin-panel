@@ -14,6 +14,9 @@ import {
   OrderEdit,
   OrderShow,
   OrdersList,
+  OrdersSeatsList,
+  OrderSeatsEdit,
+  OrderSeatsShow,
 } from "./Views";
 
 import { DataProvider } from "./DataProvider";
@@ -115,6 +118,14 @@ const AdminApp = () => (
       options={{ label: "Events" }}
       list={EventsList}
       show={EventDetailsShow}
+    />
+
+    <Resource
+      name="/order/seats"
+      options={{ label: "Seats" }}
+      list={OrdersSeatsList}
+      edit={OrderSeatsEdit}
+      show={OrderSeatsShow}
     />
   </Admin>
 );
