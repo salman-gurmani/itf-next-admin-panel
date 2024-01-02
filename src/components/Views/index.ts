@@ -1,4 +1,4 @@
 export * from "./IndividualMembership";
 export * from "./GroupMembership";
 export * from "./MembershipCardOrder";
-export * from "./SeatsOrders";
+export * from "./Orders";

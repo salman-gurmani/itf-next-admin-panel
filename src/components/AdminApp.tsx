@@ -14,9 +14,9 @@ import {
   OrderEdit,
   OrderShow,
   OrdersList,
-  OrdersSeatsList,
-  OrderSeatsEdit,
-  OrderSeatsShow,
+  MembershipSeatsOrdersList,
+  MembershipSeatsOrderEdit,
+  MembershipSeatsOrderShow,
 } from "./Views";
 
 import { DataProvider } from "./DataProvider";
@@ -87,7 +87,7 @@ const AdminApp = () => (
 
     <Resource
       name="orders/cards"
-      options={{ label: "Orders" }}
+      options={{ label: "Cards Orders" }}
       list={OrdersList}
       edit={OrderEdit}
       show={OrderShow}
@@ -122,10 +122,10 @@ const AdminApp = () => (
 
     <Resource
       name="/order/seats"
-      options={{ label: "Seats" }}
-      list={OrdersSeatsList}
-      edit={OrderSeatsEdit}
-      show={OrderSeatsShow}
+      options={{ label: "Membership Seats Order" }}
+      list={MembershipSeatsOrdersList}
+      edit={MembershipSeatsOrderEdit}
+      show={MembershipSeatsOrderShow}
     />
   </Admin>
 );
