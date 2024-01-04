@@ -45,7 +45,10 @@ export const EventsList = (props: any) => {
         bulkActionButtons={<PostBulkActionButtons />}
       >
         <TextField source="title" label="Title" />
-        <TextField source="subTitle" label="Sub Title" />
+        {/* <TextField
+          source="subTitle"
+          label="Sub Title"
+        /> */}
         <DateField source="startingDate" label="Starting Date" />
         <DateField source="endingDate" label="Ending Date" />
         <BooleanField source="RegistertionOpen" label="Registration Open" />
