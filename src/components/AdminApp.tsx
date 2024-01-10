@@ -122,7 +122,7 @@ const AdminApp = () => (
 
     <Resource
       name="/order/seats"
-      options={{ label: "Membership Seats Order" }}
+      options={{ label: "Membership & Seats Order" }}
       list={MembershipSeatsOrdersList}
       edit={MembershipSeatsOrderEdit}
       show={MembershipSeatsOrderShow}
