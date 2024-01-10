@@ -211,7 +211,11 @@ const OrderDetails = () => {
 
           <TableCellRight>Person Id</TableCellRight>
           <TableCellRight>Membership Id</TableCellRight>
-          <TableCellRight>Group Member Id</TableCellRight>
+          {record.Membership.isGroup ? (
+            <TableCellRight>Group Member Id</TableCellRight>
+          ) : (
+            <></>
+          )}
           <TableCellRight>Name</TableCellRight>
           <TableCellRight>Date of Birth</TableCellRight>
           <TableCellRight>Nationality</TableCellRight>
@@ -228,16 +232,26 @@ const OrderDetails = () => {
             <TableCell>
               <Link to={`/persons/${item.personId}/show`}>{item.personId}</Link>
             </TableCell>
-            <TableCell>
-              <Link to={`/membership/group/${item.membershipId}/show`}>
-                {item.membershipId}
-              </Link>
-            </TableCell>
-            <TableCell>
-              <Link to={`/groupMembers/${item.groupMemberId}/show`}>
-                {item.groupMemberId}
-              </Link>
-            </TableCell>
+            {record.Membership.isGroup ? (
+              <>
+                <TableCell>
+                  <Link to={`/membership/group/${item.membershipId}/show`}>
+                    {item.membershipId}
+                  </Link>
+                </TableCell>
+                <TableCell>
+                  <Link to={`/groupMembers/${item.groupMemberId}/show`}>
+                    {item.groupMemberId}
+                  </Link>
+                </TableCell>
+              </>
+            ) : (
+              <TableCell>
+                <Link to={`/membership/individual/${item.membershipId}/show`}>
+                  {item.membershipId}
+                </Link>
+              </TableCell>
+            )}
 
             <TableCellRight>
               {item.Person.givenName + " " + item.Person.familyName}
@@ -246,7 +260,6 @@ const OrderDetails = () => {
             <TableCellRight>{item.Person.nationality}</TableCellRight>
             <TableCellRight>{item.price}</TableCellRight>
             <TableCellRight>{item.quantity}</TableCellRight>
-
             <TableCellRight>
               {new Date(item.createdAt).toDateString()}
             </TableCellRight>
