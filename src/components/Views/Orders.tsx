@@ -87,6 +87,7 @@ export const MembershipSeatsOrderShow = (props: any) => {
         <BooleanField source="Membership.isGroup" label="Group" disabled />
         <TextField source="Membership.type" label="Membership Type" />
         <TextField source="quantity" label="Quantity" />
+        <TextField source="price" label="Price" />
         <TextField source="Order.status" label="Status" />
       </SimpleShowLayout>
     </Show>
